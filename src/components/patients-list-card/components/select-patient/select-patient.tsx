@@ -7,15 +7,10 @@ interface SelectPatientProps {
   age: number;
 }
 
-export const SelectPatient: React.FC<SelectPatientProps> = ({
-  profile_picture,
-  name,
-  gender,
-  age,
-}) => {
+export const SelectPatient: React.FC<SelectPatientProps> = (props) => {
   return (
     <div>
-      {name === "Jessica Taylor" && (
+      {props.name === "Jessica Taylor" && (
         <div className="relative w-full">
           <span className="absolute w-full h-[80px] -top-4 bg-[#D8FCF7]" />
         </div>
@@ -24,16 +19,16 @@ export const SelectPatient: React.FC<SelectPatientProps> = ({
         <div className="flex items-center justify-between px-[20px]">
           <div className="flex items-center z-20">
             <img
-              src={profile_picture}
-              alt={`${name} profile picture`}
+              src={props.profile_picture}
+              alt={`${props.name} profile picture`}
               height={48}
               width={48}
               className="mr-[12px]"
             />
             <div>
-              <Text variant={"body-emphasized"}>{name}</Text>
+              <Text variant={"body-emphasized"}>{props.name}</Text>
               <Text variant={"body-secondary-info"}>
-                {gender}, {age}
+                {props.gender}, {props.age}
               </Text>
             </div>
           </div>

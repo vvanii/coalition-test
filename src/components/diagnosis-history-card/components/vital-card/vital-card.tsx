@@ -1,23 +1,23 @@
 import { cn } from "@/lib";
-import { Card, Text } from "@core/ui";
+import { Card, ChevronDownIcon, Text } from "@core/ui";
 
 export interface VitalCardProps extends React.HTMLAttributes<HTMLDivElement> {
   background_color_hex: string;
   icon: React.ReactNode;
   title: string;
   level: string;
-  bpm?: string;
-  temperature?: string;
+  bpm?: number;
+  temperature?: number;
 }
 
 export const VitalCard: React.FC<VitalCardProps> = (props) => {
   return (
     <Card
       className={cn(
-        "shadow-none w-[228px] h-[242px]",
+        "shadow-none w-[228px] h-[242px] p-[16px]",
         props.className,
-        `bg-[${props.background_color_hex}]`,
       )}
+      style={{ backgroundColor: props.background_color_hex }}
       {...props}
     >
       <div className="mb-[16px]">{props.icon}</div>
@@ -30,7 +30,10 @@ export const VitalCard: React.FC<VitalCardProps> = (props) => {
           <Text variant={"manrope-extrabold-30px"}>{props.temperature}°F</Text>
         )}
       </div>
-      <Text variant={"body-regular"}>{props.level}</Text>
+      <div className="flex items-center space-x-[8px]">
+        {props.level.includes("Lower than Average") && <ChevronDownIcon />}
+        <Text variant={"body-regular"}>{props.level}</Text>
+      </div>
     </Card>
   );
 };
